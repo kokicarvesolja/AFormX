@@ -28,10 +28,10 @@ addLayers       true;
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    trup.stl
+    sphere_1m.stl
     {
         type    triSurfaceMesh;
-        name    trup;
+        name    sphere_1m;
 		
 		patchInfo
         {
@@ -93,7 +93,7 @@ castellatedMeshControls
 
     refinementSurfaces
     {
-        trup
+        sphere_1m
         {
             // Surface-wise min and max refinement level
             level (5 5);
@@ -178,7 +178,7 @@ addLayersControls
     // Per final patch (so not geometry!) the layer information
     layers
     {
-        trup
+        sphere_1m
         {
             nSurfaceLayers 5;
         }

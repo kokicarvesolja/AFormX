@@ -27,13 +27,19 @@ boundaryField
     }
 
 
-    frontAndBack
+    front
     {
         type            freestreamPressure;
         freestreamValue $internalField;
     }
+    
+    back 
+    { 
+	type 		freestreamPressure;
+	freestreamValue $internalField;
+    }
 	
-	trup
+	sphere_1m
     {
         type            zeroGradient;
     }

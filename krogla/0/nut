@@ -23,19 +23,25 @@ boundaryField
     movingWall
     {
         type            freestream;
-        freestreamValue uniform 0.14;
+        freestreamValue $internalField;
     }
 
-    frontAndBack
+    front
     {
         type            freestream;
-        freestreamValue uniform 0.14;
+        freestreamValue $internalField;
     }
+
+    back
+    {
+	    type 		    freestream;
+	    freestreamValue $internalField;
+    }			
 	
-	trup
+	sphere_1m
     {
         type            nutUWallFunction;
-        value           uniform 0;
+        value           $internalField;
     }
 }
 

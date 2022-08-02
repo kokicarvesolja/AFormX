@@ -23,9 +23,9 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         1000;
+endTime         10;
 
-deltaT          1;
+deltaT          0.1;
 
 writeControl    timeStep;
 
@@ -54,11 +54,11 @@ functions
     libs            ("libforces.so");
 
     writeControl    timeStep;
-    timeInterval    10;
+    timeInterval    1;
 
     log             yes;
 
-    patches         (trup);
+    patches         (sphere_1m);
     rho             rhoInf;      // Indicates incompressible
     rhoInf          1.225;           // Required when rho = rhoInf
     liftDir         (0 0 1);
@@ -84,10 +84,10 @@ functions
     type            yPlus;
 
     libs            ("libfieldFunctionObjects.so");
-	patches         (trup);
+	patches         (sphere_1m);
 
     writeControl    timeStep;
-    timeInterval    20;
+    timeInterval    2;
 
     log             yes;
 	

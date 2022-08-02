@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0 -10 0);
+internalField   uniform (0 100 0);
 
 boundaryField
 {
@@ -27,13 +27,19 @@ boundaryField
     }
 
 
-    frontAndBack
+    front
     {
         type            freestreamVelocity;
         freestreamValue $internalField;
     }
+    
+    back 
+    { 
+	    type 		    freestreamVelocity;
+	    freestreamValue $internalField;
+    }
 	
-	trup
+	sphere_1m
     {
         type            noSlip;
     }

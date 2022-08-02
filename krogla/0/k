@@ -24,16 +24,22 @@ boundaryField
     movingWall
     {
         type            freestream;
-        freestreamValue uniform 0.047633;
+        freestreamValue $internalField;
     }
 
-    frontAndBack
+    front
     {
         type            freestream;
-        freestreamValue uniform 0.047633;
+        freestreamValue $internalField;
     }
-	
-	trup
+
+    back
+    { 
+	    type 		freestream;
+	    freestreamValue $internalField;
+    }
+    
+	sphere_1m
     {
         type            kqRWallFunction;
         value           $internalField;

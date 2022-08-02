@@ -16,19 +16,32 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-2
+4
 (
     movingWall
     {
         type            patch;
-        nFaces          640;
-        startFace       3456;
+        nFaces          1264;
+        startFace       1218073;
     }
-    frontAndBack
+    front
     {
         type            patch;
-        nFaces          128;
-        startFace       4096;
+        nFaces          64;
+        startFace       1219337;
+    }
+    back
+    {
+        type            patch;
+        nFaces          136;
+        startFace       1219401;
+    }
+    sphere_1m
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          28712;
+        startFace       1219537;
     }
 )
 

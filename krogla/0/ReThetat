@@ -24,16 +24,22 @@ boundaryField
     movingWall
     {
         type            freestream;
-        freestreamValue uniform 160.99;
+        freestreamValue $internalField;
     }
 
-    frontAndBack
+    front
     {
         type            freestream;
-        freestreamValue uniform 160.99;
+        freestreamValue $internalField;
+    }
+    
+    back 
+    {
+	    type		    freestream;
+	    freestreamValue $internalField;
     }
 
-    trup
+    sphere_1m
     {
         type            zeroGradient;
     }
