@@ -31,3 +31,6 @@ več objektov v enem .stl file-u https://www.cfd-online.com/Forums/openfoam/2181
 
 y+ https://www.simscale.com/forum/t/what-is-y-yplus/82394 (also poglej Fluid Mechanics 101)
 
+snappyHexMeshDict add layers off, in okrog kocke naredim še bolj natančno mrežo/kocko...?
+
+ostal pri sHMD za predlogo
