@@ -26,3 +26,5 @@ StackExchange - Reynold's number: https://engineering.stackexchange.com/question
 simpleFoam -postProcess -func yPlus
 
 surfaceAdd file1 file2 output
+
+več objektov v enem .stl file-uhttps://www.cfd-online.com/Forums/openfoam/218118-naming-regions-stl-file-snappyhexmesh.html
