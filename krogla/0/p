@@ -35,8 +35,8 @@ boundaryField
     
     back 
     { 
-	type 		freestreamPressure;
-	freestreamValue $internalField;
+	    type 		    freestreamPressure;
+	    freestreamValue $internalField;
     }
 	
 	sphere_1m

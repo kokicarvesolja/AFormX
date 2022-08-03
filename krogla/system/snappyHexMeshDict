@@ -38,6 +38,29 @@ geometry
             type wall;
         }
     }
+
+    // kvadri okrog kroga
+
+    box0
+    {
+        type searchableBox;
+        min (-4 -8 -4); // diagonala kvadra, glej refinement regions, l. 141
+        max (4 4 4);
+    }
+
+    box1 
+    {
+        type searchableBox;
+        min (-6 -16 -6);
+        max (6 8 6);
+    }
+
+    box2
+    {
+        type searchableBox;
+        min (-8 -32 -8);
+        max (8 16 8);
+    }
 }
 
 
@@ -119,10 +142,28 @@ castellatedMeshControls
 
     refinementRegions
     {
-        refinementBox
+        /*refinementBox
         {
             mode inside;
             levels ((1e15 2));
+        }*/
+
+        box0
+        {
+            mode inside;
+            levels ((1.0 4)); //prvo številko v oklepaju ignorira
+        }
+
+        box1
+        {
+            mode inside;
+            levels ((1.0 3)); 
+        }
+
+        box2
+        {
+            mode inside;
+            levels ((1.0 2));
         }
     }
 

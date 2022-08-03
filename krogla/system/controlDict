@@ -23,13 +23,13 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         10;
+endTime         600;
 
-deltaT          0.1;
+deltaT          1;
 
 writeControl    timeStep;
 
-writeInterval   1;
+writeInterval   200;
 
 purgeWrite      0;
 
@@ -54,7 +54,8 @@ functions
     libs            ("libforces.so");
 
     writeControl    timeStep;
-    timeInterval    1;
+    writeInterval   200;
+    timeInterval    200;
 
     log             yes;
 
@@ -65,9 +66,9 @@ functions
     dragDir         (0 1 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
-    magUInf         10;
-    lRef            4.8;        // Wheelbase length
-    Aref            0.44;        // frontal area
+    magUInf         42;
+    lRef            1;        // Wheelbase length
+    Aref            3.14;        // frontal area
     /*
     binData
     {
@@ -87,7 +88,8 @@ functions
 	patches         (sphere_1m);
 
     writeControl    timeStep;
-    timeInterval    2;
+    writeInterval   200;
+    timeInterval    200;
 
     log             yes;
 	
@@ -97,9 +99,9 @@ functions
     dragDir         (0 1 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
-    magUInf         10;
-    lRef            4.8;        // Wheelbase length
-    Aref            0.44;        // frontal area
+    magUInf         42;
+    lRef            1;        // Wheelbase length
+    Aref            3.14;        // frontal area
 	}
 }
 

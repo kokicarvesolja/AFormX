@@ -12,3 +12,17 @@ snappyHexMesh (-overwrite)
         kopiraš file (količine) iz 0 v 3 
         checkBox v ParaView: Skip Zero Time 
 checkMesh
+
+uporabljena kalkulatorja za izračun k, \omega, 
+
+https://www.omnicalculator.com/physics/reynolds-number#laminar-vs-turbulent-flow-laminar-flow-reynolds-number-turbulent-flow-reynolds-number
+
+http://ichrome.com/blogs/archives/342
+
+Reynold's number for airplanes: http://www.aerodrag.com/Articles/ReynoldsNumber.htm
+
+StackExchange - Reynold's number: https://engineering.stackexchange.com/questions/5713/how-to-determine-the-characteristic-length-in-reynolds-number-calculations-in-ge
+
+simpleFoam -postProcess -func yPlus
+
+surfaceAdd file1 file2 output

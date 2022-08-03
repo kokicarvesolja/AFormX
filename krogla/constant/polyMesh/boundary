@@ -21,27 +21,27 @@ FoamFile
     movingWall
     {
         type            patch;
-        nFaces          1264;
-        startFace       1218073;
+        nFaces          3316;
+        startFace       606890;
     }
     front
     {
         type            patch;
-        nFaces          64;
-        startFace       1219337;
+        nFaces          208;
+        startFace       610206;
     }
     back
     {
         type            patch;
-        nFaces          136;
-        startFace       1219401;
+        nFaces          244;
+        startFace       610414;
     }
     sphere_1m
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          28712;
-        startFace       1219537;
+        nFaces          336;
+        startFace       610658;
     }
 )
 
