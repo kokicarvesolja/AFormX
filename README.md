@@ -39,3 +39,5 @@ ostal pri sHMD za predlogo
 maybe baby - https://www.cfd-online.com/Forums/openfoam-pre-processing/178127-one-more-time-wall-functions-sst.html
 
 ReThetat - https://www.openfoam.com/documentation/guides/latest/doc/guide-turbulence-ras-k-omega-sst-lm.html in u_infinity naj bi bil bulk flow condition (CFDYourself - what is ReThetat?)
+
+surfaceFeatureExtract 

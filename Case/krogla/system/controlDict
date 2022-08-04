@@ -23,13 +23,13 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         600;
+endTime         800;
 
 deltaT          1;
 
 writeControl    timeStep;
 
-writeInterval   200;
+writeInterval   100;
 
 purgeWrite      0;
 
@@ -54,8 +54,8 @@ functions
     libs            ("libforces.so");
 
     writeControl    timeStep;
-    writeInterval   200;
-    timeInterval    200;
+    writeInterval   100;
+    timeInterval    100;
 
     log             yes;
 
@@ -63,11 +63,11 @@ functions
     rho             rhoInf;      // Indicates incompressible
     rhoInf          1.225;           // Required when rho = rhoInf
     liftDir         (0 0 1);
-    dragDir         (0 1 0);
+    dragDir         (0 -1 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
-    magUInf         42;
-    lRef            1;        // Wheelbase length
+    magUInf         40;
+    lRef            2;        // Wheelbase length
     Aref            3.14;        // frontal area
     /*
     binData
@@ -88,19 +88,19 @@ functions
 	patches         (sphere_1m);
 
     writeControl    timeStep;
-    writeInterval   200;
-    timeInterval    200;
+    writeInterval   100;
+    timeInterval    100;
 
     log             yes;
 	
 	rho             rhoInf;      // Indicates incompressible
     rhoInf          1.225;           // Required when rho = rhoInf
     liftDir         (0 0 1);
-    dragDir         (0 1 0);
+    dragDir         (0 -1 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
-    magUInf         42;
-    lRef            1;        // Wheelbase length
+    magUInf         40;
+    lRef            2;        // Wheelbase length
     Aref            3.14;        // frontal area
 	}
 }
