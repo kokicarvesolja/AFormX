@@ -59,11 +59,11 @@ functions
 
     log             yes;
 
-    patches         (sphere_1m);
+    patches         (fuselage ailerons elevator);
     rho             rhoInf;      // Indicates incompressible
     rhoInf          1.225;           // Required when rho = rhoInf
     liftDir         (0 0 1);
-    dragDir         (0 1 0);
+    dragDir         (1 0 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
     magUInf         42;
@@ -85,7 +85,7 @@ functions
     type            yPlus;
 
     libs            ("libfieldFunctionObjects.so");
-	patches         (sphere_1m);
+	patches         (fuselage ailerons elevator);
 
     writeControl    timeStep;
     writeInterval   200;
@@ -96,7 +96,7 @@ functions
 	rho             rhoInf;      // Indicates incompressible
     rhoInf          1.225;           // Required when rho = rhoInf
     liftDir         (0 0 1);
-    dragDir         (0 1 0);
+    dragDir         (1 0 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
     magUInf         42;
