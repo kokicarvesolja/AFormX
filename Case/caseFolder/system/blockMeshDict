@@ -16,21 +16,21 @@ FoamFile
 
 scale   1;
 
-vertices
+vertices //podolgovat kvader, ki ima za glavno ploskev kocko velikost 40x40 (z in y os) ter je dolg 60 v x os (od -10 do 50)
 (
-    (-10 -20 -20) // 0
-    ( 50 -20 -20) // 1
-    ( 50  20 -20) // 2
-    (-10  20 -20) // 3
-    (-10 -20  20) // 4
-    ( 50 -20  20) // 5
-    ( 50  20  20) // 6
-    (-10  20  20) // 7
+    (-10 -20 -10) // 0 
+    ( 40 -20 -10) // 1
+    ( 40  20 -10) // 2
+    (-10  20 -10) // 3
+    (-10 -20  10) // 4
+    ( 40 -20  10) // 5
+    ( 40  20  10) // 6
+    (-10  20  10) // 7
 );
 
 blocks
 (
-    hex (0 1 2 3 4 5 6 7) (8 20 8) simpleGrading (1 1 1)
+    hex (0 1 2 3 4 5 6 7) (20 8 8) simpleGrading (1 1 1) // za sMH razdeli celice še bolj natančno
 );
 
 edges
@@ -62,11 +62,11 @@ boundary
 
     back
     {
-	type patch;
-	faces
-	(
-		(5 1 2 6)
-	);
+	    type patch;
+	    faces
+	    (
+		    (5 1 2 6)
+	    );
     }
 );
 

@@ -10,13 +10,13 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      nut;
+    object      nut; // turbulent viscosity, internet pravi, da je 0
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 0.14;
+internalField   uniform 0.14; //vrednost iz raes datoteke, dodani patchi fuselage, ailerons, elevators
 
 boundaryField
 {
@@ -38,7 +38,19 @@ boundaryField
 	    freestreamValue $internalField;
     }			
 	
-	sphere_1m
+	fuselage
+    {
+        type            nutUWallFunction;
+        value           $internalField;
+    }
+
+    ailerons
+    {
+        type            nutUWallFunction;
+        value           $internalField;
+    }
+
+    elevator
     {
         type            nutUWallFunction;
         value           $internalField;

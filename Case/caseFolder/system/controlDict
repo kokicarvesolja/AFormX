@@ -23,13 +23,13 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         600;
+endTime         800;
 
-deltaT          1;
+deltaT          1; 
 
 writeControl    timeStep;
 
-writeInterval   200;
+writeInterval   100; //spremeni write interval na isto vrednost tudi pri forceCoeffs in yPlus
 
 purgeWrite      0;
 
@@ -54,21 +54,21 @@ functions
     libs            ("libforces.so");
 
     writeControl    timeStep;
-    writeInterval   200;
-    timeInterval    200;
+    writeInterval   100; // spremeni
+    timeInterval    100;
 
     log             yes;
 
-    patches         (fuselage ailerons elevator);
+    patches         (fuselage ailerons elevator); //dogovor: zapis brez vejic, tukaj so patchi, za katere opazuješ
     rho             rhoInf;      // Indicates incompressible
     rhoInf          1.225;           // Required when rho = rhoInf
     liftDir         (0 0 1);
     dragDir         (1 0 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
-    magUInf         42;
-    lRef            1;        // Wheelbase length
-    Aref            3.14;        // frontal area
+    magUInf         42; // hitrosti vetra   
+    lRef            1;        // Wheelbase length, MAC - mean aerodynamic chord
+    Aref            3.14;        // frontal area, površina glavnega krila
     /*
     binData
     {
@@ -85,11 +85,11 @@ functions
     type            yPlus;
 
     libs            ("libfieldFunctionObjects.so");
-	patches         (fuselage ailerons elevator);
+	patches         (fuselage ailerons elevator); //glej patches forceCoeffs
 
     writeControl    timeStep;
-    writeInterval   200;
-    timeInterval    200;
+    writeInterval   100; // spremeni, če si spremenil writeInterval
+    timeInterval    100;
 
     log             yes;
 	
@@ -99,9 +99,9 @@ functions
     dragDir         (1 0 0);
     CofR            (0 0 0);  // Axle midpoint on ground
     pitchAxis       (1 0 0);
-    magUInf         42;
-    lRef            1;        // Wheelbase length
-    Aref            3.14;        // frontal area
+    magUInf         42; //glej forceCoeffs
+    lRef            1;        // Wheelbase length, forceCoeffs
+    Aref            3.14;        // frontal area, forceCoeffs
 	}
 }
 

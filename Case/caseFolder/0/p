@@ -10,13 +10,13 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      p;
+    object      p; // tlak/gostota!
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform 0; //na začetku je 0, potem tekom kalkukacij naraste, dodani patchi fuselage, ailerons, elevator. Povzeto po raes datoteki. 
 
 boundaryField
 {
@@ -39,7 +39,17 @@ boundaryField
 	    freestreamValue $internalField;
     }
 	
-	sphere_1m
+	fuselage
+    {
+        type            zeroGradient;
+    }
+
+	ailerons
+    {
+        type            zeroGradient;
+    }
+
+	elevator
     {
         type            zeroGradient;
     }

@@ -11,13 +11,14 @@ FoamFile
     format      ascii;
     class       volScalarField;
     location    "0";
-    object      omega;
+    object      omega; //specific dissipation rate, povezava: http://ichrome.com/blogs/archives/342
+    //za povezavo do lastnosti zraka, glej datoteko k
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 0 -1 0 0 0 0];
 
-internalField   uniform 33.5;
+internalField   uniform 33.5; //tukaj vnesi vrednosti, ki jo dobiš na spletni strani, dodani patchi fuselage, ailerons, elevator
 
 boundaryField
 {
@@ -40,7 +41,19 @@ boundaryField
 	    freestreamValue $internalField;
     }
 
-    sphere_1m
+    fuselage
+    {
+        type            omegaWallFunction;
+        value           $internalField;
+    }
+
+    ailerons
+    {
+        type            omegaWallFunction;
+        value           $internalField;
+    }
+
+    elevator
     {
         type            omegaWallFunction;
         value           $internalField;

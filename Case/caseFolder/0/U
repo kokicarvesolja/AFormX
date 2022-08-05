@@ -10,13 +10,14 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volVectorField;
-    object      U;
+    object      U; //hitrost
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0 -42 0);
+internalField   uniform (42 0 0); //povzeto po raes-u, dodani patchi fuselage, ailerons in elevator 
+//hitrost naj bo med 35 in 140 vozli (deliš z 2 in dobiš hitrosti v m/s)
 
 boundaryField
 {
@@ -39,7 +40,17 @@ boundaryField
 	    freestreamValue $internalField;
     }
 	
-	sphere_1m
+	fuselage
+    {
+        type            noSlip;
+    }
+
+	ailerons
+    {
+        type            noSlip;
+    }
+
+	elevator
     {
         type            noSlip;
     }

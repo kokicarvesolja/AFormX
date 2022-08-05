@@ -10,7 +10,7 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      surfaceFeatureExtractDict;
+    object      surfaceFeatureExtractDict; //ukaz surfaceFeatureExtract
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -28,7 +28,7 @@ fuselage.stl
     subsetFeatures
     {
         // Keep nonManifold edges (edges with >2 connected faces)
-        nonManifoldEdges       no;
+        nonManifoldEdges       no; //more biti na no
 
         // Keep open edges (edges with 1 connected face)
         openEdges       yes;

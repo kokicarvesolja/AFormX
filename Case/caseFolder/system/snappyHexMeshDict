@@ -28,16 +28,16 @@ addLayers       true;
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    fuselage.stl
+    fuselage.stl //definirani patchi, vendar type definirani kasneje, pri refinementSurfaces, l. 144
     {
         type triSurfaceMesh;
         name fuselage;
     }
 
-    ailerons.stl
+    ailerons.stl //stl file
     {
         type triSurfaceMesh;
-        name ailerons;
+        name ailerons; //ime patcha, ki se potem uporablja v vseh ostalih datotekah
     }
 
     elevator.stl
@@ -49,7 +49,7 @@ geometry
     box0
     {
         type searchableBox;
-        min (-2 -6 -2); // diagonala kvadra, glej refinement regions, l. 141
+        min (-2 -6 -2); // določeno kot diagonala kvadra od minimuma do maksimuma, glej refinement regions, l. 141
         max ( 5  6  2);
     }
 
@@ -99,7 +99,7 @@ castellatedMeshControls
     // (since balancing is quite expensive)
     // Expressed as fraction of perfect balance (= overall number of cells /
     // nProcs). 0=balance always.
-    maxLoadUnbalance 0.01;
+    //maxLoadUnbalance 0.01; //to je drugače pri motorBike kot pa pri raes
 
 
     // Number of buffer layers between different levels.
@@ -114,7 +114,7 @@ castellatedMeshControls
 
     // Specifies a level for any cell intersected by its edges.
     // This is a featureEdgeMesh, read from constant/triSurface for now.
-    features
+    features //glej surfaceFeatureExtractDict, generira .eMesh file, ki ga potem sMH prebere, glej motorBike case
     (
         {
             file "fuselage.eMesh";
@@ -164,7 +164,7 @@ castellatedMeshControls
             patchInfo
             {
                 type wall;
-                inGroups (letalo);
+                inGroups (letalo); //postavim vse tri patcha v isto skupino 
             }
         }
 
@@ -213,7 +213,7 @@ castellatedMeshControls
         box0
         {
             mode inside;
-            levels ((1E15 4));
+            levels ((1E15 4)); // prva številka je irrelavantna, ker jo ignorira
         }
 
         box1
@@ -259,7 +259,7 @@ snapControls
     //- Relative distance for points to be attracted by surface feature point
     //  or edge. True distance is this factor times local
     //  maximum edge length.
-    tolerance 4.0;
+    tolerance 2.0;
 
     //- Number of mesh displacement relaxation iterations.
     nSolveIter 30;
@@ -314,18 +314,18 @@ addLayersControls
     }
 
     // Expansion factor for layer mesh
-    expansionRatio 1.0;
+    expansionRatio 1.3;
 
     // Wanted thickness of final added cell layer. If multiple layers
     // is the thickness of the layer furthest away from the wall.
     // Relative to undistorted size of cell outside layer.
     // See relativeSizes parameter.
-    finalLayerThickness 0.3;
+    finalLayerThickness 0.9;
 
     // Minimum thickness of cell layer. If for any reason layer
     // cannot be above minThickness do not add layer.
     // Relative to undistorted size of cell outside layer.
-    minThickness 0.1;
+    minThickness 0.25;
 
     // If points get not extruded do nGrow layers of connected faces that are
     // also not grown. This helps convergence of the layer addition process
@@ -345,7 +345,7 @@ addLayersControls
 
     // Maximum number of snapping relaxation iterations. Should stop
     // before upon reaching a correct mesh.
-    nRelaxIter 3;
+    nRelaxIter 5;
 
     // Number of smoothing iterations of surface normals
     nSmoothSurfaceNormals 1;
@@ -385,8 +385,56 @@ addLayersControls
 // where to undo.
 meshQualityControls
 {
-    #include "meshQualityDict"
 
+    //dodal tukaj
+    //#include "meshQualityDict"
+    //- Maximum non-orthogonality allowed. Set to 180 to disable.
+    maxNonOrtho 65;
+
+    //- Max skewness allowed. Set to <0 to disable.
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4;
+
+    //- Max concaveness allowed. Is angle (in degrees) below which concavity
+    //  is allowed. 0 is straight face, <0 would be convex face.
+    //  Set to 180 to disable.
+    maxConcave 80;
+
+    //- Minimum pyramid volume. Is absolute volume of cell pyramid.
+    //  Set to a sensible fraction of the smallest cell volume expected.
+    //  Set to very negative number (e.g. -1E30) to disable.
+    minVol 1e-13;
+
+    //- Minimum quality of the tet formed by the face-centre
+    //  and variable base point minimum decomposition triangles and
+    //  the cell centre.  Set to very negative number (e.g. -1E30) to
+    //  disable.
+    //     <0 = inside out tet,
+    //      0 = flat tet
+    //      1 = regular tet
+    minTetQuality 1e-30;
+
+    //- Minimum face area. Set to <0 to disable.
+    minArea -1;
+
+    //- Minimum face twist. Set to <-1 to disable. dot product of face normal
+    //  and face centre triangles normal
+    minTwist 0.05;
+
+    //- Minimum normalised cell determinant
+    //  1 = hex, <= 0 = folded or flattened illegal cell
+    minDeterminant 0.001;
+
+    //- minFaceWeight (0 -> 0.5)
+    minFaceWeight 0.05;
+
+    //- minVolRatio (0 -> 1)
+    minVolRatio 0.01;
+
+    //must be >0 for Fluent compatibility
+    minTriangleTwist -1;
+
+//dodal do tukaj 
 
     // Advanced
 

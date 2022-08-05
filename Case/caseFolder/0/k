@@ -11,17 +11,18 @@ FoamFile
     format      ascii;
     class       volScalarField;
     location    "0";
-    object      k;
+    object      k; //turbulence kinetic energy, uporabljal calculator na internetu 
+// link: http://ichrome.com/blogs/archives/342
+// vse potrebne podatke za zgornjo spletno stran sem dobil tukaj: https://www.omnicalculator.com/physics/reynolds-number#laminar-vs-turbulent-flow-laminar-flow-reynolds-number-turbulent-flow-reynolds-number
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 1.6497;
-
+internalField   uniform 1.6497; 
 boundaryField
 {
-    movingWall
+    movingWall // glej raes file za "navdih" datoteke, dodani patchi fuselage, ailerons, elevator
     {
         type            freestream;
         freestreamValue $internalField;
@@ -35,11 +36,23 @@ boundaryField
 
     back
     { 
-	    type 		freestream;
+	    type 		    freestream;
 	    freestreamValue $internalField;
     }
     
-	sphere_1m
+	fuselage
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+	ailerons
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+	elevator
     {
         type            kqRWallFunction;
         value           $internalField;

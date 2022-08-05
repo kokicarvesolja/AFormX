@@ -11,15 +11,16 @@ FoamFile
     format      ascii;
     class       volScalarField;
     location    "0";
-    object      gammaInt;
+    object      gammaInt; // gammaInt potrebna za K-Omega SSTLM/gamma-Re transport model, vedno 1 according to dokumentacija
+//dokumentacija: https://www.openfoam.com/documentation/guides/latest/doc/guide-turbulence-ras-k-omega-sst-lm.html
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 0 0 0 0 0 0];
+dimensions      [0 0 0 0 0 0 0]; 
 
-internalField   uniform 1;
+internalField   uniform 1; //ne spreminjaj!
 
-boundaryField
+boundaryField //datoteka ista kot raes, samo patchi dodani (fuselage, ailerons, elevator)
 {
     movingWall
     {
@@ -39,7 +40,17 @@ boundaryField
         freestreamValue $internalField;
     }
 
-    sphere_1m
+    fuselage
+    {
+        type            zeroGradient;
+    }
+
+    ailerons
+    {
+        type            zeroGradient;
+    }
+
+    elevator
     {
         type            zeroGradient;
     }
