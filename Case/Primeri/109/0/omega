@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      omega; //specific dissipation rate, povezava: http://ichrome.com/blogs/archives/342
+    //za povezavo do lastnosti zraka, glej datoteko k
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 -1 0 0 0 0];
+
+internalField   uniform 23.13707; //tukaj vnesi vrednosti, ki jo dobiš na spletni strani, dodani patchi fuselage, ailerons, elevator
+
+boundaryField
+{
+    
+	movingWall
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    front
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+  
+    back
+    {
+	    type 		    freestream;
+	    freestreamValue $internalField;
+    }
+
+    fuselage
+    {
+        type            omegaWallFunction;
+        value           $internalField;
+    }
+
+    ailerons
+    {
+        type            omegaWallFunction;
+        value           $internalField;
+    }
+
+    elevator
+    {
+        type            omegaWallFunction;
+        value           $internalField;
+    }
+}
+
+// ************************************************************************* //

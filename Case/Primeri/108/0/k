@@ -1,0 +1,65 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      k; //turbulence kinetic energy, uporabljal calculator na internetu 
+// link: http://ichrome.com/blogs/archives/342
+// vse potrebne podatke za zgornjo spletno stran sem dobil tukaj: https://www.omnicalculator.com/physics/reynolds-number#laminar-vs-turbulent-flow-laminar-flow-reynolds-number-turbulent-flow-reynolds-number
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 1.56279; 
+boundaryField
+{
+    movingWall // glej raes file za "navdih" datoteke, dodani patchi fuselage, ailerons, elevator
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    front
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    back
+    { 
+	    type 		    freestream;
+	    freestreamValue $internalField;
+    }
+    
+	fuselage
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+	ailerons
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+	elevator
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+   
+
+}
+
+// ************************************************************************* //

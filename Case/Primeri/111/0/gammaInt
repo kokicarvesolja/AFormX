@@ -1,0 +1,60 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      gammaInt; // gammaInt potrebna za K-Omega SSTLM/gamma-Re transport model, vedno 1 according to dokumentacija
+//dokumentacija: https://www.openfoam.com/documentation/guides/latest/doc/guide-turbulence-ras-k-omega-sst-lm.html
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0]; 
+
+internalField   uniform 1; //ne spreminjaj!
+
+boundaryField //datoteka ista kot raes, samo patchi dodani (fuselage, ailerons, elevator)
+{
+    movingWall
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    front
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    back
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    fuselage
+    {
+        type            zeroGradient;
+    }
+
+    ailerons
+    {
+        type            zeroGradient;
+    }
+
+    elevator
+    {
+        type            zeroGradient;
+    }
+
+}
+
+// ************************************************************************* //

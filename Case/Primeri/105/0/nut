@@ -1,0 +1,60 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      nut; // turbulent viscosity, internet pravi, da je 0
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 0.14; //vrednost iz raes datoteke, dodani patchi fuselage, ailerons, elevators
+
+boundaryField
+{
+    movingWall
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    front
+    {
+        type            freestream;
+        freestreamValue $internalField;
+    }
+
+    back
+    {
+	    type 		    freestream;
+	    freestreamValue $internalField;
+    }			
+	
+	fuselage
+    {
+        type            nutUWallFunction;
+        value           $internalField;
+    }
+
+    ailerons
+    {
+        type            nutUWallFunction;
+        value           $internalField;
+    }
+
+    elevator
+    {
+        type            nutUWallFunction;
+        value           $internalField;
+    }
+}
+
+// ************************************************************************* //

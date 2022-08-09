@@ -1,0 +1,59 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U; //hitrost
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (23.605 1.680 0); //povzeto po raes-u, dodani patchi fuselage, ailerons in elevator 
+//hitrost naj bo med 35 in 140 vozli (deliš z 2 in dobiš hitrosti v m/s)
+
+boundaryField
+{
+    movingWall
+    {
+        type            freestreamVelocity;
+        freestreamValue $internalField;
+    }
+
+
+    front
+    {
+        type            freestreamVelocity;
+        freestreamValue $internalField;
+    }
+    
+    back 
+    { 
+	    type 		    freestreamVelocity;
+	    freestreamValue $internalField;
+    }
+	
+	fuselage
+    {
+        type            noSlip;
+    }
+
+	ailerons
+    {
+        type            noSlip;
+    }
+
+	elevator
+    {
+        type            noSlip;
+    }
+}
+
+// ************************************************************************* //
