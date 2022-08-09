@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (17.505 2.873 3.087); //povzeto po raes-u, dodani patchi fuselage, ailerons in elevator 
+internalField   uniform (17.505 3.087 2.873); //povzeto po raes-u, dodani patchi fuselage, ailerons in elevator 
 //hitrost naj bo med 35 in 140 vozli (deliš z 2 in dobiš hitrosti v m/s)
 
 boundaryField

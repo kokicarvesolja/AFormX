@@ -1,0 +1,109 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         800;
+
+deltaT          1; 
+
+writeControl    timeStep;
+
+writeInterval   100; //spremeni write interval na isto vrednost tudi pri forceCoeffs in yPlus
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    forceCoeffs
+    {
+    type            forceCoeffs;
+
+    libs            ("libforces.so");
+
+    writeControl    timeStep;
+    writeInterval   100; // spremeni
+    timeInterval    100;
+
+    log             yes;
+
+    patches         (fuselage ailerons elevator); //dogovor: zapis brez vejic, tukaj so patchi, za katere opazuješ
+    rho             rhoInf;      // Indicates incompressible
+    rhoInf          1.225;           // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);  // Axle midpoint on ground
+    pitchAxis       (1 0 0);
+    magUInf         42; // hitrosti vetra   
+    lRef            1;        // Wheelbase length, MAC - mean aerodynamic chord
+    Aref            3.14;        // frontal area, površina glavnega krila
+    /*
+    binData
+    {
+        nBin        20;          // output data into 20 bins
+        direction   (1 0 0);     // bin direction
+        cumulative  yes;
+    }
+    */
+		
+    }
+	
+	yPlus
+    {
+    type            yPlus;
+
+    libs            ("libfieldFunctionObjects.so");
+	patches         (fuselage ailerons elevator); //glej patches forceCoeffs
+
+    writeControl    timeStep;
+    writeInterval   100; // spremeni, če si spremenil writeInterval
+    timeInterval    100;
+
+    log             yes;
+	
+	rho             rhoInf;      // Indicates incompressible
+    rhoInf          1.225;           // Required when rho = rhoInf
+    liftDir         (0 0 1);
+    dragDir         (1 0 0);
+    CofR            (0 0 0);  // Axle midpoint on ground
+    pitchAxis       (1 0 0);
+    magUInf         42; //glej forceCoeffs
+    lRef            1;        // Wheelbase length, forceCoeffs
+    Aref            3.14;        // frontal area, forceCoeffs
+	}
+}
+
+
+// ************************************************************************* //
