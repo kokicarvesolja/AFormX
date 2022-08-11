@@ -146,8 +146,8 @@ blocks // pogled vzdolž x osi (gor/dol → levo/desno → spredaj/sredina/zadaj
     hex (32 52 53 33 34 54 55 35) (1 1 1) simpleGrading (1 1 1) // kvader spodaj levo spredaj 
     hex (33 53 56 46 35 55 57 36) (1 1 1) simpleGrading (1 1 1) //kvader spodaj levo sredina
     hex (46 56 58 40 36 57 59 42) (1 1 1) simpleGrading (1 1 1) // kvader spodaj levo zadaj 
-    hex (43 60 61 44 32 52 53 33) (1 1 1) simpleGrading (1 1 1) //kvader sredina levo spredaj
-    hex (44 61 62 45 35 55 57 36) (1 1 1) simpleGrading (1 1 1)
+    //hex (43 60 61 44 32 52 53 33) (1 1 1) simpleGrading (1 1 1) //kvader sredina levo spredaj
+    //hex (44 61 62 45 35 55 57 36) (1 1 1) simpleGrading (1 1 1)
 );
 
 edges
