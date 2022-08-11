@@ -97,6 +97,28 @@ vertices
 
     ( 40   5  10) //51
 
+    (-10  20  -5) //52
+
+    ( -2  20  -5) //53
+
+    (-10  20 -10) //54
+
+    ( -2  20 -10) //55
+
+    ( 20  20  -5) //56
+
+    ( 20  20  -10) //57
+
+    ( 40  20   -5) //58
+
+    ( 40  20  -10) //59
+
+    (-10  20    5) //60
+
+    ( -2  20    5) // 61
+
+    ( 20  20    5) // 62
+
 );
 
 blocks // pogled vzdolž x osi (gor/dol → levo/desno → spredaj/sredina/zadaj)
@@ -119,7 +141,13 @@ blocks // pogled vzdolž x osi (gor/dol → levo/desno → spredaj/sredina/zadaj
     hex (21 45 47 22 10 46 40 41) (1 1 1) simpleGrading (1 1 1) //kvader sredina sredina zadaj
     hex (25 48 49 26 16 43 44 19) (1 1 1) simpleGrading (1 1 1) // kvader zgoraj sredina spredaj 
     hex (26 49 50 28 19 44 45 21) (1 1 1) simpleGrading (1 1 1) // kvader zgoraj sredina sredina
-    hex (28 50 51 30 21 45 47 22) (1 1 1) simpleGrading (1 1 1)
+    hex (28 50 51 30 21 45 47 22) (1 1 1) simpleGrading (1 1 1) //kvader zgoraj sredina zadaj
+
+    hex (32 52 53 33 34 54 55 35) (1 1 1) simpleGrading (1 1 1) // kvader spodaj levo spredaj 
+    hex (33 53 56 46 35 55 57 36) (1 1 1) simpleGrading (1 1 1) //kvader spodaj levo sredina
+    hex (46 56 58 40 36 57 59 42) (1 1 1) simpleGrading (1 1 1) // kvader spodaj levo zadaj 
+    hex (43 60 61 44 32 52 53 33) (1 1 1) simpleGrading (1 1 1) //kvader sredina levo spredaj
+    hex (44 61 62 45 35 55 57 36) (1 1 1) simpleGrading (1 1 1)
 );
 
 edges
