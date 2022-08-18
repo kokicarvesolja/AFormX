@@ -46,26 +46,26 @@ geometry
         name elevator;
     }
 
-    box0
+    /*box0
     {
         type searchableBox;
-        min (-2 -6 -2); // določeno kot diagonala kvadra od minimuma do maksimuma, glej refinement regions, l. 141
-        max ( 5  6  2);
+        min (-0.5 -5 -0.5); // določeno kot diagonala kvadra od minimuma do maksimuma, glej refinement regions, l. 141
+        max ( 4.5  5  2);
     }
 
     box1 
     {
         type searchableBox;
-        min (-4 -8 -4);
-        max ( 10 8  4);
+        min (-2 -8 -2);
+        max ( 9 8  4);
     }
 
     box2
     {
         type searchableBox;
-        min (-8 -10 -8);
-        max ( 20 10  8);
-    }
+        min (-5 -15 -8);
+        max ( 30 15  8);
+    }*/
 
 }
 
@@ -80,26 +80,26 @@ castellatedMeshControls
     // If local number of cells is >= maxLocalCells on any processor
     // switches from from refinement followed by balancing
     // (current method) to (weighted) balancing before refinement.
-    maxLocalCells 100000;
+    maxLocalCells 200000;
 
     // Overall cell limit (approximately). Refinement will stop immediately
     // upon reaching this number so a refinement level might not complete.
     // Note that this is the number of cells before removing the part which
     // is not 'visible' from the keepPoint. The final number of cells might
     // actually be a lot less.
-    maxGlobalCells 2000000;
+    maxGlobalCells 65000000;
 
     // The surface refinement loop might spend lots of iterations refining just a
     // few cells. This setting will cause refinement to stop if <= minimumRefine
     // are selected for refinement. Note: it will at least do one iteration
     // (unless the number of cells to refine is 0)
-    minRefinementCells 100;
+    minRefinementCells 50;
 
     // Allow a certain level of imbalance during refining
     // (since balancing is quite expensive)
     // Expressed as fraction of perfect balance (= overall number of cells /
     // nProcs). 0=balance always.
-    //maxLoadUnbalance 0.01; //to je drugače pri motorBike kot pa pri raes
+    // maxLoadUnbalance 0.01; //to je drugače pri motorBike kot pa pri raes
 
 
     // Number of buffer layers between different levels.
@@ -143,7 +143,7 @@ castellatedMeshControls
 
     refinementSurfaces
     {
-        /*motorBike
+        fuselage
         {
             // Surface-wise min and max refinement level
             level (5 6);
@@ -153,25 +153,17 @@ castellatedMeshControls
             patchInfo
             {
                 type wall;
-                inGroups (motorBikeGroup);
-            }
-        }*/
-
-        fuselage
-        {
-            level (5 6);
-
-            patchInfo
-            {
-                type wall;
                 inGroups (letalo); //postavim vse tri patcha v isto skupino 
             }
         }
 
         ailerons
         {
+            // Surface-wise min and max refinement level
             level (5 6);
 
+            // Optional specification of patch type (default is wall). No
+            // constraint types (cyclic, symmetry) etc. are allowed.
             patchInfo
             {
                 type wall;
@@ -181,8 +173,11 @@ castellatedMeshControls
 
         elevator
         {
+            // Surface-wise min and max refinement level
             level (5 6);
 
+            // Optional specification of patch type (default is wall). No
+            // constraint types (cyclic, symmetry) etc. are allowed.
             patchInfo
             {
                 type wall;
@@ -192,7 +187,7 @@ castellatedMeshControls
     }
 
     // Resolve sharp angles
-    resolveFeatureAngle 30;
+    resolveFeatureAngle 20;
 
 
     // Region-wise refinement
@@ -210,7 +205,7 @@ castellatedMeshControls
 
     refinementRegions
     {
-        box0
+       /*box0
         {
             mode inside;
             levels ((1E15 4)); // prva številka je irrelavantna, ker jo ignorira
@@ -226,7 +221,7 @@ castellatedMeshControls
         {
             mode inside;
             levels ((1.0 2));
-        }
+        }*/
     }
 
 
@@ -238,7 +233,7 @@ castellatedMeshControls
     // section reachable from the locationInMesh is kept.
     // NOTE: This point should never be on a face, always inside a cell, even
     // after refinement.
-    locationInMesh (-1 -5 -1);
+    locationInMesh (39.001 -0.001 -0.001);
 
 
     // Whether any faceZones (as specified in the refinementSurfaces)
@@ -262,7 +257,7 @@ snapControls
     tolerance 2.0;
 
     //- Number of mesh displacement relaxation iterations.
-    nSolveIter 30;
+    nSolveIter 40;
 
     //- Maximum number of snapping relaxation iterations. Should stop
     //  before upon reaching a correct mesh.

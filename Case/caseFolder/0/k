@@ -19,7 +19,7 @@ FoamFile
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 1.6497; 
+internalField   uniform 0.33079; 
 boundaryField
 {
     movingWall // glej raes file za "navdih" datoteke, dodani patchi fuselage, ailerons, elevator

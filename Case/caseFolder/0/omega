@@ -18,7 +18,7 @@ FoamFile
 
 dimensions      [0 0 -1 0 0 0 0];
 
-internalField   uniform 33.5; //tukaj vnesi vrednosti, ki jo dobiš na spletni strani, dodani patchi fuselage, ailerons, elevator
+internalField   uniform 9.21998; //tukaj vnesi vrednosti, ki jo dobiš na spletni strani, dodani patchi fuselage, ailerons, elevator
 
 boundaryField
 {

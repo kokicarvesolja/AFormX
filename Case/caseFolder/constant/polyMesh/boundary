@@ -16,46 +16,25 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-6
+3
 (
     movingWall
     {
         type            patch;
-        nFaces          1180;
-        startFace       720106;
+        nFaces          29450;
+        startFace       1391075;
     }
     front
     {
         type            patch;
-        nFaces          208;
-        startFace       721286;
+        nFaces          4950;
+        startFace       1420525;
     }
     back
     {
         type            patch;
-        nFaces          64;
-        startFace       721494;
-    }
-    fuselage
-    {
-        type            wall;
-        inGroups        2(letalo wall);
-        nFaces          10795;
-        startFace       721558;
-    }
-    ailerons
-    {
-        type            wall;
-        inGroups        2(letalo wall);
-        nFaces          539;
-        startFace       732353;
-    }
-    elevator
-    {
-        type            wall;
-        inGroups        2(letalo wall);
-        nFaces          308;
-        startFace       732892;
+        nFaces          4950;
+        startFace       1425475;
     }
 )
 

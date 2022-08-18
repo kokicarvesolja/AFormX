@@ -1,0 +1,43 @@
+#!/bin/sh
+
+sed -i '13d' ./constants
+
+phycores=$(echo $sudoPW|cat - /proc/cpuinfo|grep -m 1 "cpu cores"|awk '{print $ 4;}')
+
+echo "St. jeder na razpolago:" $phycores
+
+read -p "Izberi stevilo jeder:" cN
+
+echo cN $cN\; >> ./constants
+
+mkdir logs
+
+surfaceCheck constant/triSurface/ailerons.stl | tee logs/surfaceCheck.ailerons.log
+surfaceCheck constant/triSurface/fuselage.stl | tee logs/surfaceCheck.fuselage.log
+surfaceCheck constant/triSurface/elevator.stl | tee logs/surfaceCheck.elevator.log
+
+blockMesh | tee logs/blockMesh.log
+
+surfaceFeatureExtract | tee logs/surfaceFeatureExtract.log
+
+decomposePar | tee logs/decomposeParsHM.log
+
+mpirun -np $cN snappyHexMesh -parallel | tee logs/snappyHexMesh.log
+
+checkMesh -allGeometry -allTopology -writeAllFields -writeSets vtk | tee logs/checkMesh.log
+
+reconstructParMesh | tee logs/reconstructParMesh.log
+
+cp -r 0.orig/* 3/
+
+decomposePar -force -latestTime | tee logs/decomposePar.log
+
+mpirun -np $cN simpleFoam -parallel | tee logs/simpleFoam.log
+
+reconstructPar | tee logs/reconstructPar.log
+
+mydir="$(dirname $PWD)"
+mydir="$(basename $PWD)"
+echo "$mydir"
+
+touch foam"$mydir".foam

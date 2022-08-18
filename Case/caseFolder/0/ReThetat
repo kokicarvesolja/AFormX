@@ -24,7 +24,7 @@ FoamFile
 
 dimensions      [0 0 0 0 0 0 0];
 
-internalField   uniform 228.78; //povzeto po raes-u, dodani patchi fuselage, ailerons in elevator. 
+internalField   uniform 205.30208; //povzeto po raes-u, dodani patchi fuselage, ailerons in elevator. 
 
 boundaryField
 {
