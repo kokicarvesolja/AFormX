@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sed -i '13d' ./constants
+sed -i '15d' ./constants  
 
 phycores=$(echo $sudoPW|cat - /proc/cpuinfo|grep -m 1 "cpu cores"|awk '{print $ 4;}')
 

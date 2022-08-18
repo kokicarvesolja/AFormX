@@ -25,13 +25,13 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         1003;
+endTime         $eT;
 
 deltaT          1; 
 
 writeControl    timeStep;
 
-writeInterval   100; //spremeni write interval na isto vrednost tudi pri forceCoeffs in yPlus
+writeInterval   $wI; //spremeni write interval na isto vrednost tudi pri forceCoeffs in yPlus
 
 purgeWrite      0;
 
@@ -56,8 +56,8 @@ functions
     libs            ("libforces.so");
 
     writeControl    timeStep;
-    writeInterval   100; // spremeni
-    timeInterval    100;
+    writeInterval   $wI; // spremeni
+    timeInterval    $wI;
 
     log             yes;
 
@@ -90,8 +90,8 @@ functions
 	patches         (fuselage ailerons elevator); //glej patches forceCoeffs
 
     writeControl    timeStep;
-    writeInterval   100; // spremeni, če si spremenil writeInterval
-    timeInterval    100;
+    writeInterval   $wI; // spremeni, če si spremenil writeInterval
+    timeInterval    $wI;
 
     log             yes;
 	

@@ -16,6 +16,13 @@ ukazi:
 - surfaceCheck <file.stl> - preveri površino, če je vse closed in če se vse dotika 
 - surfaceAdd <file1.stl> <file2.stl> output - združi datoteki file1 in file2
 - surfaceFeatureExtract - v sodelovanju z surfaceFeatureExtractDict izvozi površje, da lahko potem sMH lepo prilagodi površje
+- surfaceFeatureEdges - cfMesh
+
+decomposeParDict: 
+ - uporabi metodo scotch, ker razdeli število celic enakomerno med vse procesorje in poskrbi, da je najmanj face-ov
+ - poženi decomposePar 
+ - mpirun (komunikacija med procesorji) -np 4 (stevilo procesov - jeder) simpleFoam -parallel
+ - reconstructPar
 
 uporabljena kalkulatorja za izračun k, \omega:
 
