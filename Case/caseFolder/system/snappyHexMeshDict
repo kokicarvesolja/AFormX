@@ -80,7 +80,7 @@ castellatedMeshControls
     // If local number of cells is >= maxLocalCells on any processor
     // switches from from refinement followed by balancing
     // (current method) to (weighted) balancing before refinement.
-    maxLocalCells 200000;
+    maxLocalCells 100000;
 
     // Overall cell limit (approximately). Refinement will stop immediately
     // upon reaching this number so a refinement level might not complete.
@@ -93,7 +93,7 @@ castellatedMeshControls
     // few cells. This setting will cause refinement to stop if <= minimumRefine
     // are selected for refinement. Note: it will at least do one iteration
     // (unless the number of cells to refine is 0)
-    minRefinementCells 50;
+    minRefinementCells 3;
 
     // Allow a certain level of imbalance during refining
     // (since balancing is quite expensive)
@@ -118,15 +118,15 @@ castellatedMeshControls
     (
         {
             file "fuselage.eMesh";
-            level 6;
+            level 2;
         }
         {
             file "ailerons.eMesh";
-            level 6;
+            level 2;
         }
         {
             file "elevator.eMesh";
-            level 6;
+            level 2;
         }
     );
 
@@ -146,7 +146,7 @@ castellatedMeshControls
         fuselage
         {
             // Surface-wise min and max refinement level
-            level (5 6);
+            level (2 3);
 
             // Optional specification of patch type (default is wall). No
             // constraint types (cyclic, symmetry) etc. are allowed.
@@ -160,7 +160,7 @@ castellatedMeshControls
         ailerons
         {
             // Surface-wise min and max refinement level
-            level (5 6);
+            level (2 3);
 
             // Optional specification of patch type (default is wall). No
             // constraint types (cyclic, symmetry) etc. are allowed.
@@ -174,7 +174,7 @@ castellatedMeshControls
         elevator
         {
             // Surface-wise min and max refinement level
-            level (5 6);
+            level (2 3);
 
             // Optional specification of patch type (default is wall). No
             // constraint types (cyclic, symmetry) etc. are allowed.

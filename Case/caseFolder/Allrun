@@ -1,6 +1,7 @@
 #!/bin/sh
 
-sed -i '15d' ./constants  
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 
 phycores=$(echo $sudoPW|cat - /proc/cpuinfo|grep -m 1 "cpu cores"|awk '{print $ 4;}')
 
@@ -8,7 +9,13 @@ echo "St. jeder na razpolago:" $phycores
 
 read -p "Izberi stevilo jeder:" cN
 
-echo cN $cN\; >> ./constants
+lineNum="$(grep -n "cN" ./constants | head -n 1 | cut -d: -f1)" #doloci stevilko vrstice v kateri je cN
+
+sed -i '/^$/d' ./constants #odstrani prazne vrstice
+
+sed -i  "$lineNum"'d' ./constants #odstrani vrstico v kateri je cN
+
+echo cN $cN\; >> ./constants # na konec file appenda cN
 
 mkdir logs
 
@@ -16,11 +23,12 @@ surfaceCheck constant/triSurface/ailerons.stl | tee logs/surfaceCheck.ailerons.l
 surfaceCheck constant/triSurface/fuselage.stl | tee logs/surfaceCheck.fuselage.log
 surfaceCheck constant/triSurface/elevator.stl | tee logs/surfaceCheck.elevator.log
 
-blockMesh | tee logs/blockMesh.log
 
-surfaceFeatureExtract | tee logs/surfaceFeatureExtract.log
+runApplication surfaceFeatureExtract | tee logs/surfaceFeatureExtract.log
 
-decomposePar | tee logs/decomposeParsHM.log
+runApplication blockMesh | tee logs/blockMesh.log
+
+runApplication decomposePar | tee logs/decomposeParsHM.log
 
 mpirun -np $cN snappyHexMesh -parallel | tee logs/snappyHexMesh.log
 
@@ -36,7 +44,6 @@ mpirun -np $cN simpleFoam -parallel | tee logs/simpleFoam.log
 
 reconstructPar | tee logs/reconstructPar.log
 
-mydir="$(dirname $PWD)"
 mydir="$(basename $PWD)"
 echo "$mydir"
 
